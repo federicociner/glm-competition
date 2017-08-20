@@ -1,2 +1,3 @@
-# glm-competition
+# Generalized Linear Models (GLM) Competition
 Code repository for EYC3 Data Science Reading Club August 2017 competition (GLMs).
+

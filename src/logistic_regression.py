@@ -1,8 +1,5 @@
 import pandas as pd
 import numpy as np
-import random
-from scipy.optimize import minimize
-from sklearn.preprocessing import PolynomialFeatures
 
 
 def my_logistic_regression(df_competition):
@@ -20,7 +17,7 @@ def my_logistic_regression(df_competition):
     initial_theta = np.zeros(X.shape[1])  # initialize theta to zeroes
     alpha = 0.01  # set learning rate
     numIterations = 10000  # set number of steps
-    lamda = 0.1  # set value of lamda
+    lamda = 0.1  # set value of regularization parameter
 
     # minimize cost of theta
     theta = gradientDescent(X, y, initial_theta, alpha, numIterations, lamda)
@@ -40,13 +37,14 @@ def sigmoid(z):
 
 def costFunction(theta, X, y, lamda=0.1):
     """
-    Computes the cost of using theta as the parameter for logistic regression and the gradient of the cost w.r.t. to the parameters
+    Computes the cost of using theta as the parameter for logistic regression
+    and the gradient of the cost w.r.t. to the parameters.
 
     :param theta: parameter vector containing corresponding values of theta
     :param X: MxN array that contains feature set (x-values)
     :param y: Mx1 array that contains resulting outcomes (y-values)
     :param lamda: regularization parameter
-    :returns: a scalar of the cost "J" and gradient "grad" of the cost with the same size as theta
+    :returns: a scalar of the cost "J"
     """
     m = len(y)
     h = sigmoid(np.dot(X, theta))  # get predictions
@@ -83,8 +81,9 @@ def gradientDescent(X, y, theta, alpha, numIterations, lamda=0.1):
     :param y: Mx1 array that contains resulting outcomes (y-values)
     :param alpha: scalar value that defines the learning rate for gradient descent
     :param theta: parameter vector containing corresponding values of theta
-    :returns: optimal parameter set "theta" and an array "J_history" containing the values of J
-    for each iteration
+    :param y: Mx1 array that contains resulting outcomes (y-values)
+    :param lamda: regularization parameter
+    :returns: optimal parameter set "theta"
     """
     J_history = np.zeros(numIterations)
 
