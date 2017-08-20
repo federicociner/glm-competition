@@ -20,7 +20,7 @@ def my_logistic_regression(df_competition):
     initial_theta = np.zeros(X.shape[1])  # initialize theta to zeroes
     alpha = 0.01  # set learning rate
     numIterations = 10000  # set number of steps
-    lamda = 0.01  # set value of lamda
+    lamda = 0.1  # set value of lamda
 
     # minimize cost of theta
     theta = gradientDescent(X, y, initial_theta, alpha, numIterations, lamda)
@@ -86,12 +86,9 @@ def gradientDescent(X, y, theta, alpha, numIterations, lamda=0.1):
     :returns: optimal parameter set "theta" and an array "J_history" containing the values of J
     for each iteration
     """
-    m = len(y)
     J_history = np.zeros(numIterations)
 
     for i in range(0, numIterations):
-        pred = np.dot(X, theta)  # get predictions
-        loss = pred - y  # calculate loss
         J_history[i] = costFunction(theta, X, y, lamda)  # calculate cost
         gradient = calculateGradient(theta, X, y, lamda)
         theta = theta - (alpha * gradient)  # update theta
