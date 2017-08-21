@@ -4,10 +4,12 @@ import numpy as np
 
 def my_logistic_regression(df_competition):
     """
-    Computes
-    """
+    Computes optimal parameter values theta using logistic regression
+    and batch gradient descent cost function minimization.
 
-    # format data
+    :param df_competition: Pandas dataframe containing training data
+    :returns: vector of optimal parameter values theta
+    """
     data = df_competition.values  # convert data frame to numpy array
     m, n = data[:, :-1].shape
     X = np.concatenate((np.ones((m, 1)), data[:, :-1]), axis=1)
@@ -19,9 +21,8 @@ def my_logistic_regression(df_competition):
     numIterations = 10000  # set number of steps
     lamda = 0.1  # set value of regularization parameter
 
-    # minimize cost of theta
+    # compute theta
     theta = gradientDescent(X, y, initial_theta, alpha, numIterations, lamda)
-
     return theta
 
 
@@ -29,8 +30,10 @@ def sigmoid(z):
     """
     Computes the sigmoid function for all values of z.
 
-    :param z: scalar, vector or array of values for which the sigmoid function should be computed
-    :returns: scalar, vector or array of values of size z containing computed sigmoid values
+    :param z: scalar, vector or array of values for which the sigmoid
+    function should be computed
+    :returns: scalar, vector or array of values of size z containing computed
+    sigmoid values
     """
     return (1 / (1 + np.power(np.e, -z)))
 
@@ -79,7 +82,8 @@ def gradientDescent(X, y, theta, alpha, numIterations, lamda=0.1):
 
     :param X: MxN array that contains feature set (x-values)
     :param y: Mx1 array that contains resulting outcomes (y-values)
-    :param alpha: scalar value that defines the learning rate for gradient descent
+    :param alpha: scalar value that defines the learning rate for gradient
+    descent
     :param theta: parameter vector containing corresponding values of theta
     :param y: Mx1 array that contains resulting outcomes (y-values)
     :param lamda: regularization parameter
