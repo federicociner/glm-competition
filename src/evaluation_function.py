@@ -1,5 +1,7 @@
 import numpy as np
 import pandas as pd
+import random
+from logistic_regression import my_logistic_regression
 
 """
 Evaluation Steps
